@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10b981">
+    <link rel="manifest" href="manifest.json">
+    <title>ECO-ÉCOLE CI | Défis Éco-citoyens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#008000',
+                        'eco-dark': '#004d00',
+                        'eco-blue': '#003366',
+                        'eco-light': '#f4f9f4',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.06)',
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes ecoDefiBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            40% { transform: translateY(-12px) scale(1.05); }
+            60% { transform: translateY(-4px) scale(0.98); }
+        }
+        @keyframes ecoGlowAmber {
+            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8); }
+        }
+        .animate-eco-defi-bounce {
+            animation: ecoDefiBounce 3s ease-in-out infinite, ecoGlowAmber 2.2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-eco-light via-white to-blue-50 text-gray-800 font-sans min-h-screen flex flex-col items-center p-4 lg:p-6">
+
+    <header class="sticky top-4 z-50 w-full max-w-7xl mx-auto bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl shadow-soft border border-white/60 mb-8 transition-all">
+        <div class="flex items-center justify-between w-full">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-white p-1.5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <img src="assets/img/LOGO.png" alt="Logo ECO-ÉCOLE CI" class="w-10 h-auto sm:w-12">
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-black tracking-tight text-eco-blue">
+                        <span class="text-eco-green">ECO-ÉCOLE</span> CI
+                    </h1>
+                    <p class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-widest font-extrabold">Collège d'Agnibilékrou</p>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-1 bg-gray-100/80 p-1.5 rounded-xl text-xs sm:text-sm font-bold text-gray-600">
+                <a href="index.html" class="hover:text-eco-green hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🏠 Accueil</a>
+                <a href="eco-bot.html" class="hover:text-eco-blue hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🤖 Éco-Bot</a>
+                <a href="signalement.html" class="hover:text-red-600 hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🚨 Signalement</a>
+                <a href="defis.html" class="bg-white text-yellow-600 shadow-sm py-2 px-3.5 rounded-lg whitespace-nowrap">🎯 Défis</a>
+                <a href="apprendre.html" class="hover:text-purple-600 hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">📚 Apprendre</a>
+                <a href="admin.html" class="text-gray-400 hover:text-black py-2 px-2 transition-all" title="Panneau d'Administration">⚙️</a>
+            </nav>
+
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold focus:outline-none transition-colors" aria-label="Menu Mobile">
+                <span id="mobile-menu-icon" class="text-xl leading-none">☰</span>
+            </button>
+        </div>
+
+        <div id="mobile-menu-drawer" class="hidden lg:hidden pt-4 mt-3 border-t border-gray-100 space-y-2 text-sm font-bold">
+            <a href="index.html" class="flex items-center p-3 rounded-xl hover:bg-gray-50 text-gray-700">
+                <span class="mr-3 text-lg">🏠</span> Accueil
+            </a>
+            <a href="eco-bot.html" class="flex items-center p-3 rounded-xl hover:bg-gray-50 text-gray-700">
+                <span class="mr-3 text-lg">🤖</span> Éco-Bot IA
+            </a>
+            <a href="signalement.html" class="flex items-center p-3 rounded-xl hover:bg-red-50 text-red-600">
+                <span class="mr-3 text-lg">🚨</span> Déclarer un Signalement
+            </a>
+            <a href="defis.html" class="flex items-center p-3 rounded-xl bg-yellow-50 text-yellow-700 font-black">
+                <span class="mr-3 text-lg">🎯</span> Déclarer un Défi
+            </a>
+            <a href="apprendre.html" class="flex items-center p-3 rounded-xl hover:bg-purple-50 text-purple-700">
+                <span class="mr-3 text-lg">📚</span> Médiathèque & Quiz
+            </a>
+            <a href="admin.html" class="flex items-center p-3 rounded-xl bg-gray-900 text-yellow-400 font-black">
+                <span class="mr-3 text-lg">⚙️</span> Administration
+            </a>
+        </div>
+    </header>
+
+    <!-- BANNIÈRE ÉCO-BOT DÉFIS AVEC BULLE DE PAROLES ET ANIMATION DE VICTOIRE -->
+    <section class="w-full max-w-7xl mx-auto mb-8 bg-gradient-to-r from-amber-950 via-slate-900 to-amber-900 rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div class="flex items-center space-x-6 relative z-10">
+            <!-- Mascotte avec animation de victoires / défis bounce -->
+            <div class="relative flex-shrink-0 group">
+                <img id="ecobot-avatar-defis" src="assets/img/533fde1a-3bab-46c6-bf78-ba093a0a34ea.jpg" alt="Éco-Bot Coach" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-amber-400/80 shadow-[0_0_25px_rgba(245,158,11,0.5)] animate-eco-defi-bounce cursor-pointer">
+                <span class="absolute -top-1 -right-1 bg-amber-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-md animate-bounce">CHAMPION 🏆</span>
+            </div>
+            
+            <!-- Bulle de Paroles (Speech Bubble) -->
+            <div class="relative bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-amber-300/30 text-white shadow-inner max-w-xl">
+                <div class="hidden sm:block absolute -left-3 top-6 w-0 h-0 border-y-8 border-y-transparent border-r-8 border-r-white/10"></div>
+                <h3 class="text-base sm:text-lg font-black text-amber-300 flex items-center mb-1">
+                    🤖 Éco-Bot Coach te motive :
+                </h3>
+                <p class="text-xs sm:text-sm text-amber-100 font-medium leading-relaxed">
+                    « Relève les défis hebdomadaires avec tes camarades, accumule des points pour ta classe et hissez-vous au sommet du classement du collège ! »
+                </p>
+            </div>
+        </div>
+
+        <a href="#form-participer-defi" class="relative z-10 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-orange-600 hover:to-amber-500 text-white text-xs sm:text-sm font-black px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:scale-105 whitespace-nowrap flex items-center">
+            🎯 Soumettre un Défi Réalisé
+        </a>
+    </section>
+
+    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        
+        <div class="lg:col-span-2 space-y-8">
+            <section class="bg-gradient-to-br from-amber-400 to-orange-500 p-8 sm:p-10 rounded-3xl shadow-lg relative overflow-hidden text-white">
+                <div class="absolute -right-10 -top-10 text-9xl opacity-20 transform rotate-12">♻️</div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="bg-white/20 backdrop-blur-sm text-white text-xs font-black uppercase tracking-widest py-1 px-3 rounded-md">Défi en cours</span>
+                        <span class="bg-red-500 text-white text-xs font-black uppercase tracking-widest py-1 px-3 rounded-md flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-white animate-ping mr-2"></span> Se termine vendredi
+                        </span>
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-4xl font-black mb-3 leading-tight drop-shadow-md">
+                        Opération "Zéro Plastique" dans la cour
+                    </h2>
+                    <p class="text-white/90 text-sm sm:text-base font-medium max-w-xl leading-relaxed mb-8">
+                        Cette semaine, l'objectif est de collecter un maximum de déchets plastiques (sachets, bouteilles) abandonnés dans la cour du collège. Pesez votre récolte et envoyez la preuve !
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 flex items-center">
+                            <span class="text-3xl mr-3">🏆</span>
+                            <div>
+                                <p class="text-[10px] text-orange-100 uppercase font-bold tracking-wider">Récompense</p>
+                                <p class="text-lg font-black">+50 Points</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 flex items-center">
+                            <span class="text-3xl mr-3">⚖️</span>
+                            <div>
+                                <p class="text-[10px] text-orange-100 uppercase font-bold tracking-wider">Objectif minimum</p>
+                                <p class="text-lg font-black">2 Kg / classe</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-6 rounded-3xl shadow-card border border-gray-100/80">
+                <h3 class="text-lg font-black text-eco-blue mb-4">🔥 Les classes en tête cette semaine</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
+                        <div class="flex items-center">
+                            <span class="text-xl mr-3">🥇</span>
+                            <span class="font-extrabold text-gray-800">5<sup>e</sup> 3</span>
+                        </div>
+                        <span class="font-black text-eco-green">4.5 kg collectés</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
+                        <div class="flex items-center">
+                            <span class="text-xl mr-3">🥈</span>
+                            <span class="font-extrabold text-gray-800">3<sup>e</sup> 1</span>
+                        </div>
+                        <span class="font-black text-eco-green">3.2 kg collectés</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div>
+            <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-card border border-yellow-200/50 relative">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-t-3xl"></div>
+
+                <div class="mb-6 mt-2">
+                    <h2 class="text-xl font-black text-gray-800 flex items-center">
+                        <span class="mr-2">📝</span> Valider un défi
+                    </h2>
+                    <p class="text-xs text-gray-500 mt-2 font-medium">Chef de classe ou éco-délégué, déclarez la récolte de votre classe ici.</p>
+                </div>
+
+                <form id="form-defi" class="space-y-5">
+                    
+                    <div>
+                        <label for="classe" class="block text-sm font-black text-gray-700 mb-2">Classe participante (Base Firebase) *</label>
+                        <select id="classe" required class="w-full bg-gray-50 border border-gray-200 text-gray-800 text-sm font-bold rounded-xl focus:ring-yellow-500 focus:border-yellow-500 block p-3.5 shadow-inner">
+                            <option value="">⏳ Chargement des classes depuis Firebase...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="poids" class="block text-sm font-black text-gray-700 mb-2">Poids collecté (en Kg) *</label>
+                        <div class="relative">
+                            <input type="number" id="poids" step="0.1" required placeholder="Ex: 2.5" class="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm font-bold shadow-inner">
+                            <span class="absolute right-4 top-3.5 text-gray-400 font-bold">Kg</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-black text-gray-700 mb-2">Preuve (Photo de la balance) *</label>
+                        <label class="flex flex-col items-center justify-center w-full h-24 border-2 border-gray-200 border-dashed rounded-xl cursor-pointer bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6 text-gray-400">
+                                <span class="text-2xl mb-1" id="photo-icon">📸</span>
+                                <p class="mb-1 text-[11px] font-bold" id="photo-text">Ajouter une photo</p>
+                            </div>
+                            <input type="file" id="photo-preuve" required accept="image/*" capture="environment" class="hidden" onchange="changerTextePhoto(this)">
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-500 hover:to-orange-500 text-white text-sm font-black py-4 px-6 rounded-xl shadow-lg shadow-yellow-500/30 transition-all active:scale-95">
+                        ENVOYER LA PREUVE 🚀
+                    </button>
+                </form>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="mt-auto pt-12 text-center text-gray-400 text-[11px] font-bold tracking-wide pb-4">
+        Projet ECO-ÉCOLE CI | Catégorie 1 — Programmation & IA | WAC 2026
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // 1. CONFIGURATION FIREBASE (⚠️ N'OUBLIE PAS DE METTRE TES CLÉS ICI)
+      const firebaseConfig = {
+  apiKey: "AIzaSyCuCt595pBFuG_zK_yPFWeMeQBXuEE0ZH0",
+  authDomain: "eco-ecole-ci.firebaseapp.com",
+  projectId: "eco-ecole-ci",
+  storageBucket: "eco-ecole-ci.firebasestorage.app",
+  messagingSenderId: "824454599287",
+  appId: "1:824454599287:web:a73f83c0ea22b6e26f2c72",
+  measurementId: "G-LJD1E9EW8D"
+};
+
+        // 2. INITIALISATION
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
+        // 2.5 CHARGEMENT DYNAMIQUE PROVENANT EXCLUSIVEMENT DE LA BASE DE DONNÉES FIREBASE
+        function chargerClassesDepuisFirebase() {
+            const selectClasse = document.getElementById('classe');
+            if (!selectClasse) return;
+
+            // Écouteur en temps réel de la collection "admin_classes" dans Firebase
+            db.collection("admin_classes").onSnapshot(snap => {
+                const classesFirebase = [];
+
+                // Auto-initialisation si la collection Firebase est encore vide
+                if (snap.empty) {
+                    const classesInitiales = ["6e 1", "6e 2", "5e 3", "4e 1", "3e 1"];
+                    classesInitiales.forEach(nom => {
+                        db.collection("admin_classes").add({ nom: nom, created_at: new Date() });
+                    });
+                    return;
+                }
+
+                snap.forEach(doc => {
+                    const data = doc.data();
+                    if (data && data.nom && data.nom.trim() !== '') {
+                        classesFirebase.push(data.nom.trim());
+                    }
+                });
+
+                const uniqueClasses = Array.from(new Set(classesFirebase)).sort();
+
+                const currentValue = selectClasse.value;
+                selectClasse.innerHTML = '<option value="">Sélectionnez votre classe...</option>';
+
+                uniqueClasses.forEach(nom => {
+                    const opt = document.createElement('option');
+                    opt.value = nom;
+                    opt.textContent = nom;
+                    if (nom === currentValue) opt.selected = true;
+                    selectClasse.appendChild(opt);
+                });
+            }, err => {
+                console.error("Erreur de connexion aux classes Firebase :", err);
+                selectClasse.innerHTML = '<option value="">❌ Erreur de chargement Firebase</option>';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', chargerClassesDepuisFirebase);
+
+        // 3. MISE À JOUR VISUELLE QUAND L'ÉLÈVE PREND LA PHOTO
+        function changerTextePhoto(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('photo-icon').innerText = "✅";
+                document.getElementById('photo-text').innerText = "Preuve ajoutée !";
+                document.getElementById('photo-text').classList.add("text-eco-green");
+            }
+        }
+
+        // 4. ALGORITHME DE COMPRESSION (BASE64)
+        function compresserPhotoEnBase64(fichier) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(fichier);
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 800; 
+                        let scaleSize = 1;
+
+                        if (img.width > MAX_WIDTH) {
+                            scaleSize = MAX_WIDTH / img.width;
+                        }
+
+                        canvas.width = img.width * scaleSize;
+                        canvas.height = img.height * scaleSize;
+
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        const base64Texte = canvas.toDataURL('image/jpeg', 0.7);
+                        resolve(base64Texte);
+                    };
+                    img.onerror = (erreur) => reject(erreur);
+                };
+                reader.onerror = (erreur) => reject(erreur);
+            });
+        }
+
+        // 5. ENVOI DES DONNÉES À FIREBASE
+        document.getElementById('form-defi').addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+
+            const btnSubmit = this.querySelector('button[type="submit"]');
+            const originalText = btnSubmit.innerHTML;
+            btnSubmit.disabled = true;
+
+            // Récupération des champs textes
+            const classeSelect = document.getElementById('classe');
+            const nomClasse = classeSelect.options[classeSelect.selectedIndex].text;
+            const poidsKg = parseFloat(document.getElementById('poids').value);
+
+            // Traitement de la photo
+            const photoInput = document.getElementById('photo-preuve');
+            let imageBase64 = "";
+
+            if (photoInput.files.length > 0) {
+                btnSubmit.innerHTML = "⏳ COMPRESSION DE LA PREUVE...";
+                try {
+                    imageBase64 = await compresserPhotoEnBase64(photoInput.files[0]);
+                } catch (erreurPhoto) {
+                    console.error("Compression échouée : ", erreurPhoto);
+                }
+            }
+
+            // Sauvegarde dans Firestore
+            btnSubmit.innerHTML = "🗄️ SAUVEGARDE EN COURS...";
+            try {
+                // On crée une nouvelle collection nommée "defis_participations"
+                await db.collection("defis_participations").add({
+                    classe: nomClasse,
+                    poids_kg: poidsKg,
+                    photo_base64: imageBase64,
+                    date_validation: new Date(),
+                    statut: "En attente de validation"
+                });
+
+                alert(`✅ Félicitations à la classe ${nomClasse} ! Les ${poidsKg} Kg ont bien été enregistrés et seront validés par l'administration.`);
+                
+                // Réinitialisation de l'interface
+                this.reset();
+                document.getElementById('photo-icon').innerText = "📸";
+                document.getElementById('photo-text').innerText = "Ajouter une photo";
+                document.getElementById('photo-text').classList.remove("text-eco-green");
+
+            } catch (erreurTexte) {
+                console.error("Erreur base de données : ", erreurTexte);
+                alert("❌ Impossible d'enregistrer la participation. Vérifiez votre connexion Internet.");
+            } finally {
+                btnSubmit.innerHTML = originalText;
+                btnSubmit.disabled = false;
+            }
+        });
+
+        function synchroniserAvatarMascotte() {
+            const avatarLocal = localStorage.getItem('ecobot_avatar') || 'assets/img/533fde1a-3bab-46c6-bf78-ba093a0a34ea.jpg';
+            document.querySelectorAll('#ecobot-avatar-defis, #ecobot-avatar-header, #ecobot-avatar-hero').forEach(img => {
+                if (img) img.src = avatarLocal;
+            });
+
+            if (typeof db !== 'undefined') {
+                db.collection("configuration_site").doc("ecobot_mascot").onSnapshot(doc => {
+                    if (doc.exists && doc.data().url) {
+                        const url = doc.data().url;
+                        localStorage.setItem('ecobot_avatar', url);
+                        document.querySelectorAll('#ecobot-avatar-defis, #ecobot-avatar-header, #ecobot-avatar-hero').forEach(img => {
+                            if (img) img.src = url;
+                        });
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            synchroniserAvatarMascotte();
+            chargerClassesPourSelectionFormulaire();
+        });
+    </script>
+    <script src="assets/js/pwa-install.js"></script>
+</body>
+</html>

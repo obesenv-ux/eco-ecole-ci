@@ -1,0 +1,39 @@
+{
+  "id": "eco-ecole-ci-app",
+  "short_name": "ECO-ÉCOLE CI",
+  "name": "ECO-ÉCOLE CI | Collège d'Agnibilékrou",
+  "description": "Plateforme d'éco-citoyenneté et de développement durable du Collège Départemental d'Agnibilékrou",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a192f",
+  "theme_color": "#10b981",
+  "orientation": "any",
+  "categories": ["education", "environment"],
+  "icons": [
+    {
+      "src": "assets/img/LOGO.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/img/LOGO.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Éco-Bot IA",
+      "url": "./eco-bot.html",
+      "icons": [{ "src": "assets/img/LOGO.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Déclarer un Défi",
+      "url": "./defis.html",
+      "icons": [{ "src": "assets/img/LOGO.png", "sizes": "192x192" }]
+    }
+  ]
+}
