@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#10b981">
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/img/LOGO.png">
+    <link rel="shortcut icon" type="image/png" href="assets/img/LOGO.png">
+    <link rel="apple-touch-icon" href="assets/img/LOGO.png">
     <title>ECO-ÉCOLE CI | Défis Éco-citoyens</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -227,7 +230,24 @@
 
     </main>
 
-    <footer class="mt-auto pt-12 text-center text-gray-400 text-[11px] font-bold tracking-wide pb-4">
+    <footer class="mt-auto pt-12 text-center text-gray-400 text-[11px] font-bold tracking-wide pb-4 w-full">
+        <div class="max-w-7xl mx-auto px-4 py-3 mb-4 bg-gray-900/90 text-gray-300 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shadow-inner border border-gray-800">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-extrabold text-gray-200">Statistiques de Fréquentation :</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-black">
+                <span class="bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-lg text-emerald-400 flex items-center gap-1.5 shadow-sm">
+                    👁️ <span class="visitor-counter-total">0</span> visites
+                </span>
+                <span class="bg-blue-950/80 border border-blue-500/30 px-3 py-1 rounded-lg text-blue-400 flex items-center gap-1.5 shadow-sm">
+                    👥 <span class="visitor-counter-uniques">0</span> uniques
+                </span>
+                <span class="bg-amber-950/80 border border-amber-500/30 px-3 py-1 rounded-lg text-amber-400 flex items-center gap-1.5 shadow-sm">
+                    ⚡ <span class="visitor-counter-today">0</span> aujourd'hui
+                </span>
+            </div>
+        </div>
         Projet ECO-ÉCOLE CI | Catégorie 1 — Programmation & IA | WAC 2026
     </footer>
 
@@ -418,5 +438,6 @@
         });
     </script>
     <script src="assets/js/pwa-install.js"></script>
+    <script src="assets/js/visitor-counter.js"></script>
 </body>
 </html>
