@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10b981">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/img/LOGO.png">
+    <link rel="shortcut icon" type="image/png" href="assets/img/LOGO.png">
+    <link rel="apple-touch-icon" href="assets/img/LOGO.png">
+    <title>ECO-ÉCOLE CI | Éco-Bot IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-green': '#008000',
+                        'eco-dark': '#004d00',
+                        'eco-blue': '#003366',
+                        'eco-light': '#f4f9f4',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.06)',
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Personnalisation de la barre de défilement du chat */
+        .chat-scrollbar::-webkit-scrollbar { width: 6px; }
+        .chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .chat-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .chat-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        @keyframes ecoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+        @keyframes ecoPulseGlow {
+            0%, 100% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 24px rgba(16, 185, 129, 0.8); }
+        }
+        .animate-eco-mascot {
+            animation: ecoFloat 3.5s ease-in-out infinite, ecoPulseGlow 2.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-eco-light via-white to-blue-50 text-gray-800 font-sans h-screen flex flex-col items-center p-3 sm:p-6 overflow-hidden">
+
+    <header class="w-full max-w-4xl mx-auto bg-white/90 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-soft border border-white/60 mb-4 sm:mb-6 transition-all flex-shrink-0">
+        <div class="flex items-center justify-between w-full">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-white p-1.5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <img src="assets/img/LOGO.png" alt="Logo ECO-ÉCOLE CI" class="w-9 h-auto sm:w-11">
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-black tracking-tight text-eco-blue">
+                        <span class="text-eco-green">ECO-ÉCOLE</span> CI
+                    </h1>
+                    <p class="text-[8px] sm:text-[9px] text-gray-400 uppercase tracking-widest font-extrabold">Collège d'Agnibilékrou</p>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center space-x-1 bg-gray-100/80 p-1.5 rounded-xl text-xs sm:text-sm font-bold text-gray-600">
+                <a href="index.html" class="hover:text-eco-green hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🏠 Accueil</a>
+                <a href="eco-bot.html" class="bg-white text-eco-blue shadow-sm py-2 px-3.5 rounded-lg whitespace-nowrap">🤖 Éco-Bot</a>
+                <a href="signalement.html" class="hover:text-red-600 hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🚨 Signalement</a>
+                <a href="defis.html" class="hover:text-yellow-600 hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">🎯 Défis</a>
+                <a href="apprendre.html" class="hover:text-purple-600 hover:bg-white/50 transition-all py-2 px-3.5 rounded-lg whitespace-nowrap">📚 Apprendre</a>
+                <a href="admin.html" class="text-gray-400 hover:text-black py-2 px-2 transition-all" title="Panneau d'Administration">⚙️</a>
+            </nav>
+
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold focus:outline-none transition-colors" aria-label="Menu Mobile">
+                <span id="mobile-menu-icon" class="text-xl leading-none">☰</span>
+            </button>
+        </div>
+
+        <div id="mobile-menu-drawer" class="hidden lg:hidden pt-4 mt-3 border-t border-gray-100 space-y-2 text-sm font-bold">
+            <a href="index.html" class="flex items-center p-3 rounded-xl hover:bg-gray-50 text-gray-700">
+                <span class="mr-3 text-lg">🏠</span> Accueil
+            </a>
+            <a href="eco-bot.html" class="flex items-center p-3 rounded-xl bg-blue-50 text-eco-blue font-black">
+                <span class="mr-3 text-lg">🤖</span> Éco-Bot IA
+            </a>
+            <a href="signalement.html" class="flex items-center p-3 rounded-xl hover:bg-red-50 text-red-600">
+                <span class="mr-3 text-lg">🚨</span> Déclarer un Signalement
+            </a>
+            <a href="defis.html" class="flex items-center p-3 rounded-xl hover:bg-yellow-50 text-yellow-700">
+                <span class="mr-3 text-lg">🎯</span> Déclarer un Défi
+            </a>
+            <a href="apprendre.html" class="flex items-center p-3 rounded-xl hover:bg-purple-50 text-purple-700">
+                <span class="mr-3 text-lg">📚</span> Médiathèque & Quiz
+            </a>
+            <a href="admin.html" class="flex items-center p-3 rounded-xl bg-gray-900 text-yellow-400 font-black">
+                <span class="mr-3 text-lg">⚙️</span> Administration
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl mx-auto flex-grow flex flex-col min-h-0 relative">
+        <section class="bg-white rounded-3xl shadow-card border border-gray-100/80 flex flex-col h-full overflow-hidden">
+            
+            <div class="bg-gradient-to-r from-eco-green to-eco-blue p-4 sm:p-5 flex items-center justify-between shadow-md relative z-10">
+                <div class="flex items-center">
+                    <div class="relative group mr-4">
+                        <img id="ecobot-avatar-header" src="assets/img/533fde1a-3bab-46c6-bf78-ba093a0a34ea.jpg" alt="Mascotte Éco-Bot IA" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white shadow-md animate-eco-mascot cursor-pointer hover:scale-105 transition-transform">
+                        <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full animate-ping"></span>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-black text-white leading-tight">ECO-BOT IA</h2>
+                        <p class="text-white/80 text-xs font-bold flex items-center mt-1">
+                            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-1.5 shadow-[0_0_8px_rgba(7ade80,0.8)]"></span> Connecté
+                        </p>
+                    </div>
+                </div>
+                <button title="Effacer la discussion" onclick="location.reload()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+                    🔄
+                </button>
+            </div>
+
+            <div id="chat-container" class="flex-grow bg-slate-50 p-4 sm:p-6 overflow-y-auto chat-scrollbar flex flex-col">
+                
+                <div class="flex items-end mb-6 animate-fade-in">
+                    <img id="ecobot-avatar-msg-initial" src="assets/img/533fde1a-3bab-46c6-bf78-ba093a0a34ea.jpg" alt="IA Éco-Bot" class="w-10 h-10 rounded-full object-cover mr-3 shadow-md border-2 border-white flex-shrink-0">
+                    <div class="bg-white border border-gray-100 p-4 sm:p-5 rounded-2xl rounded-bl-none text-sm sm:text-base text-gray-700 shadow-sm max-w-[85%] font-medium leading-relaxed">
+                        Salut ! Je suis <strong>ECO BOT</strong>, ton intelligence artificielle. 🌱<br><br>
+                        Je connais plus de 150 réponses sur l'environnement, le tri des déchets, l'eau, et les gestes éco-citoyens du collège. <strong>Comment puis-je t'aider aujourd'hui ?</strong>
+                    </div>
+                </div>
+                </div>
+
+            <!-- Suggestions rapides -->
+            <div class="px-4 py-2 bg-slate-100/70 border-t border-gray-200/60 flex items-center overflow-x-auto gap-2 text-xs no-scrollbar">
+                <span class="text-gray-400 font-bold text-[11px] whitespace-nowrap mr-1">💡 Idées :</span>
+                <button onclick="poserQuestion('Comment recycler les déchets ?')" class="bg-white hover:bg-emerald-50 text-emerald-800 font-bold px-3 py-1.5 rounded-xl border border-emerald-200 shadow-sm transition-all whitespace-nowrap">♻️ Comment recycler ?</button>
+                <button onclick="poserQuestion('Pourquoi économiser l\'eau ?')" class="bg-white hover:bg-blue-50 text-blue-800 font-bold px-3 py-1.5 rounded-xl border border-blue-200 shadow-sm transition-all whitespace-nowrap">💧 Économiser l'eau</button>
+                <button onclick="poserQuestion('Comment faire du compost ?')" class="bg-white hover:bg-amber-50 text-amber-800 font-bold px-3 py-1.5 rounded-xl border border-amber-200 shadow-sm transition-all whitespace-nowrap">🍃 Faire du compost</button>
+                <button onclick="poserQuestion('C\'est quoi les 17 ODD ?')" class="bg-white hover:bg-purple-50 text-purple-800 font-bold px-3 py-1.5 rounded-xl border border-purple-200 shadow-sm transition-all whitespace-nowrap">🌍 Les 17 ODD</button>
+            </div>
+
+            <div class="bg-white p-4 border-t border-gray-100">
+                <div class="flex items-center bg-gray-50 border border-gray-200 rounded-2xl p-1.5 focus-within:ring-2 focus-within:ring-eco-blue focus-within:border-transparent transition-all shadow-inner">
+                    
+                    <input type="text" id="user-input" placeholder="Écris ta question écolo ici (ex: comment recycler...)" class="w-full bg-transparent px-4 py-3 text-sm sm:text-base focus:outline-none text-gray-700 font-medium">
+                    
+                    <button id="send-btn" class="bg-gradient-to-r from-eco-green to-eco-blue hover:opacity-90 text-white p-3 rounded-xl transition-all shadow-md flex items-center justify-center font-bold ml-2 flex-shrink-0 group">
+                        <span class="hidden sm:inline mr-2">Envoyer</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-center text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-wider">L'IA est entraînée par les élèves du Collège Dép. d'Agnibilékrou</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="mt-auto pt-8 text-center text-gray-400 text-[11px] font-bold tracking-wide pb-4 w-full">
+        <div class="max-w-7xl mx-auto px-4 py-3 mb-4 bg-gray-900/90 text-gray-300 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shadow-inner border border-gray-800">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-extrabold text-gray-200">Statistiques de Fréquentation :</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-black">
+                <span class="bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-lg text-emerald-400 flex items-center gap-1.5 shadow-sm">
+                    👁️ <span class="visitor-counter-total">0</span> visites
+                </span>
+                <span class="bg-blue-950/80 border border-blue-500/30 px-3 py-1 rounded-lg text-blue-400 flex items-center gap-1.5 shadow-sm">
+                    👥 <span class="visitor-counter-uniques">0</span> uniques
+                </span>
+                <span class="bg-amber-950/80 border border-amber-500/30 px-3 py-1 rounded-lg text-amber-400 flex items-center gap-1.5 shadow-sm">
+                    ⚡ <span class="visitor-counter-today">0</span> aujourd'hui
+                </span>
+            </div>
+        </div>
+        Projet ECO-ÉCOLE CI | Catégorie 1 — Programmation & IA | WAC 2026
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuCt595pBFuG_zK_yPFWeMeQBXuEE0ZH0",
+            authDomain: "eco-ecole-ci.firebaseapp.com",
+            projectId: "eco-ecole-ci",
+            storageBucket: "eco-ecole-ci.firebasestorage.app",
+            messagingSenderId: "824454599287",
+            appId: "1:824454599287:web:a73f83c0ea22b6e26f2c72",
+            measurementId: "G-LJD1E9EW8D"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+    </script>
+    <script src="assets/data/connaissance.js"></script>
+    <script src="assets/js/eco-bot.js"></script>
+    
+    <script>
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (drawer) {
+                const isHidden = drawer.classList.contains('hidden');
+                if (isHidden) {
+                    drawer.classList.remove('hidden');
+                    if (icon) icon.textContent = '✕';
+                } else {
+                    drawer.classList.add('hidden');
+                    if (icon) icon.textContent = '☰';
+                }
+            }
+        }
+
+        function synchroniserAvatarMascotte() {
+            const avatarLocal = localStorage.getItem('ecobot_avatar') || 'assets/img/533fde1a-3bab-46c6-bf78-ba093a0a34ea.jpg';
+            document.querySelectorAll('#ecobot-avatar-header, #ecobot-avatar-msg-initial').forEach(img => {
+                if (img) img.src = avatarLocal;
+            });
+
+            if (typeof db !== 'undefined') {
+                db.collection("configuration_site").doc("ecobot_mascot").onSnapshot(doc => {
+                    if (doc.exists && doc.data().url) {
+                        const url = doc.data().url;
+                        localStorage.setItem('ecobot_avatar', url);
+                        document.querySelectorAll('#ecobot-avatar-header, #ecobot-avatar-msg-initial').forEach(img => {
+                            if (img) img.src = url;
+                        });
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            synchroniserAvatarMascotte();
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            
+            if (query) {
+                const inputField = document.getElementById('user-input');
+                const sendButton = document.getElementById('send-btn');
+                
+                if (inputField && sendButton) {
+                    inputField.value = query;
+                    setTimeout(() => {
+                        sendButton.click();
+                    }, 500);
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            }
+        });
+    </script>
+    <script src="assets/js/pwa-install.js"></script>
+    <script src="assets/js/visitor-counter.js"></script>
+</body>
+</html>
